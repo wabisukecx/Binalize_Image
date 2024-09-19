@@ -28,12 +28,12 @@ def main():
             sigma_color = st.slider('sigmaColor', 1, 150, 75)
             sigma_space = st.slider('sigmaSpace', 1, 150, 75)
         with col2:
-            thresh = st.slider('thresh', 0, 255, 127)
+            thres = st.slider('thresh', 0, 255, 127)
             maximum = st.slider('maximum', 0, 255, 255)
 
         # Process image
         bilateral_filtered = cv2.bilateralFilter(gray_image, d, sigma_color, sigma_space)
-        _, binary = cv2.threshold(bilateral_filtered, thresh, maximum, cv2.THRESH_BINARY)
+        _, binary = cv2.threshold(bilateral_filtered, thres, maximum, cv2.THRESH_BINARY)
 
         # Display original and processed images side by side
         col1, col2 = st.columns(2)
