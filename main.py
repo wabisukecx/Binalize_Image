@@ -21,22 +21,26 @@ def main():
         else:
             gray_image = image_array
 
-        # Display original image
-        st.image(gray_image, caption='Original Image', use_column_width=True)
-
         # Sliders for parameters
-        d = st.slider('d', 1, 20, 9)
-        sigma_color = st.slider('sigmaColor', 1, 150, 75)
-        sigma_space = st.slider('sigmaSpace', 1, 150, 75)
-        thresh = st.slider('thresh', 0, 255, 127)
-        maximum = st.slider('maximum', 0, 255, 255)
+        col1, col2 = st.columns(2)
+        with col1:
+            d = st.slider('d', 1, 20, 9)
+            sigma_color = st.slider('sigmaColor', 1, 150, 75)
+            sigma_space = st.slider('sigmaSpace', 1, 150, 75)
+        with col2:
+            thresh = st.slider('thresh', 0, 255, 127)
+            maximum = st.slider('maximum', 0, 255, 255)
 
         # Process image
         bilateral_filtered = cv2.bilateralFilter(gray_image, d, sigma_color, sigma_space)
         _, binary = cv2.threshold(bilateral_filtered, thresh, maximum, cv2.THRESH_BINARY)
 
-        # Display processed image
-        st.image(binary, caption='Processed Image', use_column_width=True)
+        # Display original and processed images side by side
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(gray_image, caption='Original Image', use_column_width=True)
+        with col2:
+            st.image(binary, caption='Processed Image', use_column_width=True)
 
         # Save button
         if st.button('Save Processed Image'):
