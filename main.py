@@ -45,12 +45,12 @@ def main():
         # Sliders for parameters
         col1, col2 = st.columns(2)
         with col1:
-            d = st.slider('Bilateral filter diameter', 5, 9, 5)
-            sigma_color = st.slider('Bilateral filter sigmaColor', 50, 100, 75)
-            sigma_space = st.slider('Bilateral filter sigmaSpace', 10, 100, 75)
+            d = st.slider('Bilateral filter diameter', 5, 15, 5)
+            sigma_color = st.slider('Bilateral filter sigmaColor', 50, 150, 75)
+            sigma_space = st.slider('Bilateral filter sigmaSpace', 10, 150, 75)
         with col2:
-            low_threshold = st.slider('Canny Low Threshold', 0, 255, 100)
-            high_threshold = st.slider('Canny High Threshold', 0, 255, 200)
+            low_threshold = st.slider('Canny Low Threshold', 50, 150, 100)
+            high_threshold = st.slider('Canny High Threshold', 150, 250, 200)
 
         # Process image
         # 1. Apply bilateral filter
